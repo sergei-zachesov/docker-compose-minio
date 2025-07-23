@@ -1,0 +1,25 @@
+services:
+  minio-solo:
+    image: bitnami/minio:2025-debian-12
+    container_name: minio-solo
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:-admin}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-password}
+      MINIO_SKIP_CLIENT: yes
+      MINIO_SCHEME: http
+      MINIO_CONSOLE_PORT_NUMBER: 9001
+    volumes:
+      - minio-data:/bitnami/minio/data
+    healthcheck:
+      test: [ "CMD", "curl", "-k", "https://localhost:9000/minio/health/live" ]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+volumes:
+  minio-data:
+    driver: local
