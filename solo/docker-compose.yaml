@@ -1,6 +1,7 @@
 services:
+
   minio-solo:
-    image: bitnami/minio:2025-debian-12
+    image: bitnami/minio:2025.7.23-debian-12-r0
     container_name: minio-solo
     restart: always
     ports:
@@ -12,6 +13,7 @@ services:
       MINIO_SKIP_CLIENT: yes
       MINIO_SCHEME: http
       MINIO_CONSOLE_PORT_NUMBER: 9001
+      MINIO_BROWSER: on
     volumes:
       - minio-data:/bitnami/minio/data
     healthcheck:
