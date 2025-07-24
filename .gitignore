@@ -9,4 +9,4 @@ certsgen/ca-key.pem
 certsgen/server-cert.pem
 certsgen/server-key.pem
 certsgen/server-req.pem
-
+.idea/
